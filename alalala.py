@@ -16,7 +16,11 @@ while total_Leitura_pressao > 0:
     else:
         pressao_ajustada = pressao * 0.96
 
-    if 120<= pressao_ajustada <= 180:
+    if pressao_ajustada <120:
+        print("o fluído cristalizou e entopiu o sistema, portanto o sistema deve ser interrompido imediatamente por segurança.")
+        total_Leitura_pressao = 0
+
+    elif 120<= pressao_ajustada <= 180:
         print("A pressão está na Zona Verde (Estável).")
         atual = 'verde'
         cont_vermelho = 0
@@ -30,6 +34,7 @@ while total_Leitura_pressao > 0:
         pressao_media += pressao_ajustada
     else:
         print("A pressão está na Zona Vermelha (Crítica).")
+        print("Há uma possibilidade do duto se romper.")
         atual = 'vermelho'
         cont_vermelho += 1
         pressao_media += pressao_ajustada
@@ -48,9 +53,9 @@ while total_Leitura_pressao > 0:
     total_Leitura_pressao -= 1
     
 pressao_media = pressao_media / total_Leitura_pressao
-print(f"A média das pressões ajustadas é {pressao_media}.")
+print(f"A média das pressões ajustadas é {pressao_media}UPCs.")
 
-print(f"A menor pressão exibida é de {menor}UPC.")
+print(f"A menor pressão exibida é de {menor}UPCs.")
 
 percentualVerde = cont_verde / total_Leitura_pressao * 100
 print(f"Percentual de leituras que ficaram na Zona Verde é de {percentualVerde}%.")
