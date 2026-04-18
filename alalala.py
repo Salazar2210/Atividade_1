@@ -8,7 +8,6 @@ pressao_total = 0
 totalRealizado = 0
 contador_vermelho = 0
 contador_verde = 0
-parar = 0
 menor = 500
 maior = 0
 
@@ -48,7 +47,7 @@ print(f'''
 {'=' * 35}
 ''')
 
-pressao_media = pressao_total / total_Leitura_pressao
+pressao_media = pressao_total / totalRealizado
 print(f"A média das pressões ajustadas é {pressao_media} UPC.")
 
 print(f"A maior pressão exibida é de {maior} UPC.")
@@ -57,7 +56,7 @@ if totalRealizado == 1:
 print(f"A menor pressão exibida é de {menor} UPC.")
 
 percentualVerde = contador_verde / total_Leitura_pressao * 100
-print(f"Percentual de leituras que ficaram na Zona Verde é de {percentualVerde}%.")
+print(f"Percentual de leituras que ficaram na Zona Verde é de {percentualVerde:.2f}%.")
 
 percentualRealizado = totalRealizado / total_Leitura_pressao * 100
-print(f"O percentual de leituras realizadas foi de {percentualRealizado}%.")
+print(f"O percentual de leituras realizadas foi de {percentualRealizado:.2f}%.")
