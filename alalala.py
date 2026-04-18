@@ -1,43 +1,24 @@
+import os
+import funcoes
+
+os.system('cls')
 total_Leitura_pressao = float(input("Digite o número total de leituras da pressão hidrodinâmica que serão realizadas no seu turno: "))
-pressao_media = 0
+cont_leituras_realizadas = total_Leitura_pressao
+pressao_total = 0
 totalRealizado = 0
-cont_vermelho = 0
-cont_verde = 0
-ant = None
-atual = None
+contador_vermelho = 0
+contador_verde = 0
+parar = 0
 menor = 500
 maior = 0
 
-while total_Leitura_pressao > 0:
+
+while cont_leituras_realizadas > 0:
     pressao = float(input("Digite a pressão atual que o duto sofre: "))
 
-    if pressao >150:
-        pressao_ajustada = pressao * 1.08
-    else:
-        pressao_ajustada = pressao * 0.96
-
-    if 120<= pressao_ajustada <= 180:
-        print("A pressão está na Zona Verde (Estável).")
-        atual = 'verde'
-        cont_vermelho = 0
-        cont_verde += 1
-        pressao_media += pressao_ajustada
-
-    elif 180 < pressao_ajustada <= 250:
-        print("A pressão está na Zona Amarela (Oscilação).")
-        atual = 'amarelo'
-        cont_vermelho = 0
-        pressao_media += pressao_ajustada
-    else:
-        print("A pressão está na Zona Vermelha (Crítica).")
-        atual = 'vermelho'
-        cont_vermelho += 1
-        pressao_media += pressao_ajustada
-    ant = atual 
-    
-    if cont_vermelho == 2:
-        print("O sistema deve ser interrompido imediatamente por segurança.")
-        total_Leitura_pressao = 0
+    pressao_ajustada = funcoes.ajusteTerm(pressao)
+    pressao_total += pressao_ajustada
+    situacao = funcoes.situaPres(pressao_ajustada)
 
     if pressao_ajustada > maior:
         maior = pressao_ajustada
@@ -45,14 +26,37 @@ while total_Leitura_pressao > 0:
         menor = pressao_ajustada
 
     totalRealizado += 1
-    total_Leitura_pressao -= 1
-    
-pressao_media = pressao_media / total_Leitura_pressao
-print(f"A média das pressões ajustadas é {pressao_media}.")
+    cont_leituras_realizadas -= 1
 
-print(f"A menor pressão exibida é de {menor}UPC.")
+    if situacao == 'c':
+        print("⚠️  O sistema deve ser interrompido imediatamente por segurança ⚠️")
+        break
+    elif situacao == 'vd':
+        contador_verde += 1
+        contador_vermelho = 0
+    elif situacao == 'a':
+        contador_vermelho = 0
+    else:
+        contador_vermelho += 1
+        if contador_vermelho == 2:
+            print("⚠️  O sistema deve ser interrompido imediatamente por segurança ⚠️")
+            break
 
-percentualVerde = cont_verde / total_Leitura_pressao * 100
+print(f'''
+\n{'=' * 35}
+{' ' * 8}Resumo das leituras
+{'=' * 35}
+''')
+
+pressao_media = pressao_total / total_Leitura_pressao
+print(f"A média das pressões ajustadas é {pressao_media} UPC.")
+
+print(f"A maior pressão exibida é de {maior} UPC.")
+if totalRealizado == 1:
+    menor = pressao_ajustada
+print(f"A menor pressão exibida é de {menor} UPC.")
+
+percentualVerde = contador_verde / total_Leitura_pressao * 100
 print(f"Percentual de leituras que ficaram na Zona Verde é de {percentualVerde}%.")
 
 percentualRealizado = totalRealizado / total_Leitura_pressao * 100
