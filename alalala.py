@@ -28,7 +28,7 @@ while cont_leituras_realizadas > 0:
     cont_leituras_realizadas -= 1
 
     if situacao == 'c':
-        print("⚠️  O sistema deve ser interrompido imediatamente por segurança ⚠️")
+        print("\n⚠️   O sistema deve ser interrompido imediatamente por segurança ⚠️")
         break
     elif situacao == 'vd':
         contador_verde += 1
@@ -38,13 +38,13 @@ while cont_leituras_realizadas > 0:
     else:
         contador_vermelho += 1
         if contador_vermelho == 2:
-            print("⚠️  O sistema deve ser interrompido imediatamente por segurança ⚠️")
+            print("\n⚠️   O sistema deve ser interrompido imediatamente por segurança ⚠️")
             break
 
 print(f'''
-\n{'=' * 35}
-{' ' * 8}Resumo das leituras
-{'=' * 35}
+\n{'=' * 40}
+{' ' * 10}Resumo das leituras
+{'=' * 40}
 ''')
 
 pressao_media = pressao_total / totalRealizado
