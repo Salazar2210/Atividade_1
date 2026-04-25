@@ -9,22 +9,19 @@ def situaPres (pres):
     if pres < 120:
         print('Fluído está cristalizado')
         situacao = 'c'
-        return situacao
     
     if pres < 180:
         print("🟢  A pressão está na Zona Verde (Estável). 🟢\n")
         situacao = 'vd'
-        return situacao
 
     elif pres < 250:
         print("🟡  A pressão está na Zona Amarela (Oscilação). 🟡\n")
         situacao = 'a'
-        return situacao
     
     else:
         print("🔴  A pressão está na Zona Vermelha (Crítica). 🔴\n")
         situacao = 'vm'
-        return situacao
+    return situacao
 
 def condicao_duto(pct_verde):
     if pct_verde > 85:
@@ -47,3 +44,12 @@ def chance_travamento(pct_realizado):
     else:
         estado = 'Chance mínimas de ocorrer um travamento'
     return estado
+
+def calcular_variacao_press(press_atual, press_ant, cont_leit):
+    if cont_leit > 1:
+        variacao = press_atual - press_ant
+        if variacao > 0:
+            print(f'A pressão subiu em {variacao} UPS')
+        else:
+            variacao *= -1
+            print(f'A pressão abaixou em {variacao} UPS')
