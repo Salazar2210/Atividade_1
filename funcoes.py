@@ -10,7 +10,7 @@ def situaPres (pres):
         print('Fluído está cristalizado')
         situacao = 'c'
     
-    if pres < 180:
+    elif pres < 180:
         print("🟢  A pressão está na Zona Verde (Estável). 🟢\n")
         situacao = 'vd'
 

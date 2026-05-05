@@ -89,6 +89,3 @@ Leituras realizadas foi   : {percentualRealizado:.2f}%.
 Estabilidade da operação  : {estabilidade}
 Chance de travamento      : {risco}
 ''')
-
-
-
