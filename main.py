@@ -15,9 +15,9 @@ ________________________________________________________________________________
  Protocolo         : Travamento em 2x Zona Vermelha | 
 ________________________________________________________________________________
       
- ZONA VERDE    : 120 a 180 UPC  (ESTAVEL)
- ZONA AMARELA  : abaixo de 250  (OSCILACAO)
- ZONA VERMELHA : acima de 250   (CRITICA)
+ ZONA VERDE    : entre 120 a 180 UPC  (ESTAVEL)
+ ZONA AMARELA  : abaixo de 250 UPC    (OSCILACAO)
+ ZONA VERMELHA : acima de 250 UPC     (CRITICA)
 ================================================================================\n''')
 
 total_Leitura_pressao = int(input("Digite o número total de leituras da pressão hidrodinâmica que serão realizadas no seu turno: "))
@@ -66,6 +66,8 @@ while cont_leituras_realizadas != (total_Leitura_pressao + 1):
             print("\n ⚠️   O sistema deve ser interrompido imediatamente por segurança ⚠️")
             break
 
+input('Pressione a tecla "Enter" para ver o relatório do turno. ')
+os.system('cls')
 print(f'''
 \n{'=' * 40}
 {'Resumo das leituras':^40}
